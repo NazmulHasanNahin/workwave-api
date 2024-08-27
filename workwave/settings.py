@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-=uak7caj+7i^&ij&v35on@@tf=q)%hz2$tc5lqaygc&hfxhk57
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com","workwave-portal.netlify.app"]
 
 # Application definition
 
@@ -63,7 +63,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com",
+    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -138,7 +138,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com",]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
