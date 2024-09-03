@@ -61,20 +61,23 @@ class JobCategoryDetailView(APIView):
         except JobCategory.DoesNotExist:
             return Response({"error": "Job category not found"}, status=status.HTTP_404_NOT_FOUND)
         
+        # Serialize category information
         category_serializer = JobCategorySerializer(category)
         
-        # Get jobs and count
+        # Get related jobs
         jobs = Job.objects.filter(category=category)
         job_serializer = JobSerializer(jobs, many=True)
-        job_count = jobs.count()
         
+        # Construct the response
         result = {
-            "category": category_serializer.data,
-            "job_count": job_count,
-            "jobs": job_serializer.data
+            "id": category.id,
+            "name": category.name,
+            "job_count": jobs.count(),
+            "jobs": job_serializer.data  # Include jobs in the response
         }
         
         return Response(result)
+
 
 from rest_framework import viewsets
 
