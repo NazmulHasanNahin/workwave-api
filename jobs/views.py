@@ -63,16 +63,18 @@ class JobCategoryDetailView(APIView):
         
         category_serializer = JobCategorySerializer(category)
         
+        # Get jobs and count
         jobs = Job.objects.filter(category=category)
         job_serializer = JobSerializer(jobs, many=True)
+        job_count = jobs.count()
         
         result = {
             "category": category_serializer.data,
+            "job_count": job_count,
             "jobs": job_serializer.data
         }
         
         return Response(result)
-
 
 from rest_framework import viewsets
 
