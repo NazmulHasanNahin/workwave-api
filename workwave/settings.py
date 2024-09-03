@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 import environ
-
+import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 
@@ -104,12 +104,33 @@ TEMPLATES = [
 WSGI_APPLICATION = 'workwave.wsgi.application'
 
 # Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'LGqRriXSzeIorZKXEYxxHgtkPpKfzDFh',
+#         'HOST': 'meticulous-empathy.railway.internal',
+#         'PORT': '5432',
+#     }
+# }
+
+
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://workwave_db_user:7gNhpJKmwddUb1hcFcjMEGijfSw7hMbY@dpg-crbh50dds78s73dfmfig-a.oregon-postgres.render.com/workwave_db',
+    )
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
