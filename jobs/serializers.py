@@ -12,10 +12,11 @@ class JobSerializer(serializers.ModelSerializer):
 
 class JobCategorySerializer(serializers.ModelSerializer):
     job_count = serializers.SerializerMethodField()
+    jobs = JobSerializer(many=True, read_only=True)
     
     class Meta:
         model = JobCategory
-        fields = '__all__'
+        fields =  ['id', 'name', 'job_count', 'jobs']
     
     def get_job_count(self, obj):
         return Job.objects.filter(category=obj).count()

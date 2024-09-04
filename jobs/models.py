@@ -8,7 +8,7 @@ class Job(models.Model):
     location = models.CharField(max_length=255)
     employer = models.ForeignKey(User, related_name='jobs', on_delete=models.CASCADE)
     date_posted = models.DateField(auto_now_add=True)
-    category = models.ForeignKey('JobCategory', on_delete=models.CASCADE)
+    category = models.ForeignKey('JobCategory', on_delete=models.CASCADE, related_name='jobs')
     company_name = models.CharField(max_length=30)
     experience = models.CharField(max_length=255)
     employee_type = models.CharField(max_length=255)

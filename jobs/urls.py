@@ -1,8 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import *
-from django.conf import settings
-from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register('jobs', JobViewSet, basename='job')
@@ -16,3 +14,4 @@ urlpatterns = [
     path('categories/', JobCategoryViewSet.as_view({'get': 'list'}), name='job-category-list'),
     path('categories/<int:pk>/', JobCategoryDetailView.as_view(), name='job-category-detail'), 
 ]
+

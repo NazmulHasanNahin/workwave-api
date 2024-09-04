@@ -1,5 +1,5 @@
 from django.http import Http404
-from rest_framework import status,viewsets
+from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -8,6 +8,7 @@ from .serializers import JobSerializer, JobCategorySerializer
 
 class JobCreateView(APIView):
     permission_classes = [IsAuthenticated]
+    
     def post(self, request):
         serializer = JobSerializer(data=request.data)
         if serializer.is_valid():
@@ -40,20 +41,6 @@ class JobDetailView(APIView):
         serializer = JobSerializer(job)
         return Response(serializer.data)
 
-
-class JobCategoryListCreateView(APIView):
-    def get(self, request):
-        categories = JobCategory.objects.all()
-        serializer = JobCategorySerializer(categories, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = JobCategorySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class JobCategoryDetailView(APIView):
     def get(self, request, pk):
         try:
@@ -61,23 +48,30 @@ class JobCategoryDetailView(APIView):
         except JobCategory.DoesNotExist:
             return Response({"error": "Job category not found"}, status=status.HTTP_404_NOT_FOUND)
         
-        # Serialize category information
-        category_serializer = JobCategorySerializer(category)
-        
-        # Get related jobs
-        jobs = Job.objects.filter(category=category)
-        job_serializer = JobSerializer(jobs, many=True)
-        
-        # Construct the response
-        result = {
-            "id": category.id,
-            "name": category.name,
-            "job_count": jobs.count(),
-            "jobs": job_serializer.data  # Include jobs in the response
-        }
-        
-        return Response(result)
+        serializer = JobCategorySerializer(category)
+        return Response(serializer.data)
 
+
+# class JobCategoryDetailView(APIView):
+#     def get(self, request, pk):
+#         try:
+#             category = JobCategory.objects.get(pk=pk)
+#         except JobCategory.DoesNotExist:
+#             return Response({"error": "Job category not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+#         category_serializer = JobCategorySerializer(category)
+
+#         jobs = Job.objects.filter(category=category)
+#         job_serializer = JobSerializer(jobs, many=True)
+
+#         result = {
+#             "id": category.id,
+#             "name": category.name,
+#             "job_count": jobs.count(),
+#             "jobs": job_serializer.data 
+#         }
+        
+#         return Response(result)
 
 from rest_framework import viewsets
 
@@ -91,7 +85,6 @@ class JobViewSet(viewsets.ModelViewSet):
 class JobCategoryViewSet(viewsets.ModelViewSet):
     queryset = JobCategory.objects.all()
     serializer_class = JobCategorySerializer
-    
     
     
 class JobSearchView(APIView):
