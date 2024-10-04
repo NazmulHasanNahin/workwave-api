@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
 import environ
-import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 
@@ -17,7 +16,7 @@ SECRET_KEY = 'django-insecure-=uak7caj+7i^&ij&v35on@@tf=q)%hz2$tc5lqaygc&hfxhk57
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com","workwave-portal.netlify.app",".vercel.app","workwave-api.vercel.app"]
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 
 # Application definition
 
