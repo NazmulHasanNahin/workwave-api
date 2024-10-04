@@ -17,11 +17,12 @@ SECRET_KEY = 'django-insecure-=uak7caj+7i^&ij&v35on@@tf=q)%hz2$tc5lqaygc&hfxhk57
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com","workwave-portal.netlify.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com","workwave-portal.netlify.app",".vercel.app "]
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'allauth.account.middleware.AccountMiddleware',
@@ -63,7 +65,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",
+    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",".vercel.app ",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -101,7 +103,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'workwave.wsgi.application'
+WSGI_APPLICATION = 'workwave.wsgi.app'
 
 # Database
 # DATABASES = {
@@ -125,10 +127,22 @@ WSGI_APPLICATION = 'workwave.wsgi.application'
 
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://workwave_db_user:7gNhpJKmwddUb1hcFcjMEGijfSw7hMbY@dpg-crbh50dds78s73dfmfig-a.oregon-postgres.render.com/workwave_db',
+#     )
+# }
+
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://workwave_db_user:7gNhpJKmwddUb1hcFcjMEGijfSw7hMbY@dpg-crbh50dds78s73dfmfig-a.oregon-postgres.render.com/workwave_db',
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.dfhppkilewlilpswaeqr',
+        'PASSWORD': 'N@h!n2573122',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'PORT': '6543'
+    }
 }
 
 
@@ -156,6 +170,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+STATIC_ROOT= BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

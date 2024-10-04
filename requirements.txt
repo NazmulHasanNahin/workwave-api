@@ -44,3 +44,4 @@ tzdata
 urllib3
 vercel
 virtualenv
+whitenoise
