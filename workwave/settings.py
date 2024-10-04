@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-=uak7caj+7i^&ij&v35on@@tf=q)%hz2$tc5lqaygc&hfxhk57
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com","workwave-portal.netlify.app",".vercel.app "]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost","workwave-api-wyrf.onrender.com","workwave-portal.netlify.app",".vercel.app","workwave-api.vercel.app"]
 
 # Application definition
 
@@ -65,7 +65,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",".vercel.app ",
+    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",".vercel.app ","workwave-api.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
