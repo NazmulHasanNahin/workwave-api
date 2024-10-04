@@ -65,7 +65,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app",".vercel.app ","https://workwave-api.vercel.app",
+    "http://127.0.0.1:5500","https://workwave-api-wyrf.onrender.com","https://workwave-portal.netlify.app","https://workwave-api.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
