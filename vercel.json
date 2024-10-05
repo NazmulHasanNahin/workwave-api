@@ -1,13 +1,13 @@
 {
     "builds": [{
-      "src": "workwave/wsgi.py",
+      "src": "workwave/asgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     }],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "workwave/wsgi.py"
+        "dest": "workwave/asgi.py"
       }
     ]
 }
