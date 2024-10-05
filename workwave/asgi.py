@@ -15,5 +15,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'workwave.settings')
 
 application = get_asgi_application()
 
-
-app=application

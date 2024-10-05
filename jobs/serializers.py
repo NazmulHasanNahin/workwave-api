@@ -16,7 +16,7 @@ class JobCategorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = JobCategory
-        fields =  ['id', 'name', 'job_count', 'jobs']
+        fields =  ['id', 'name', 'job_count']
     
     def get_job_count(self, obj):
         return Job.objects.filter(category=obj).count()
