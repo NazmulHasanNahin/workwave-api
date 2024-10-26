@@ -86,7 +86,7 @@ To set up the Workwave API on your local machine, follow these commands in seque
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/Workwave-API.git
+git clone https://github.com/NazmulHasanNahin/Workwave-API.git
 
 # Navigate to the project directory
 cd Workwave-API
